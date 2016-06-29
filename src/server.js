@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const port = process.env.PORT || 4000;
 
-function handler(req, res) {
+function handler (req, res) {
   const url = req.url;
 
   if (url === '/') {
