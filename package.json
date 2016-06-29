@@ -1,0 +1,28 @@
+{
+  "name": "autocomplete-app",
+  "version": "1.0.0",
+  "description": "A word auto-completion project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FloatingIntegers/autocomplete-app.git"
+  },
+  "keywords": [
+    "Auto-completion",
+    "Search"
+  ],
+  "author": "FloatingIntegers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FloatingIntegers/autocomplete-app/issues"
+  },
+  "homepage": "https://github.com/FloatingIntegers/autocomplete-app#readme",
+  "dependencies": {
+    "shot": "^3.1.0",
+    "tape": "^4.6.0"
+  }
+}
