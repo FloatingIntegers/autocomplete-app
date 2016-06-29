@@ -27,6 +27,7 @@
     "tape": "^4.6.0"
   },
   "devDependencies": {
+    "babel-eslint": "^6.1.0",
     "eslint": "^2.13.1",
     "eslint-config-defaults": "^9.0.0",
     "tap-nyan": "0.0.2"
