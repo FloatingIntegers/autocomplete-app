@@ -4,7 +4,8 @@
   "description": "A word auto-completion project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "nyantest": "node test/server.test.js | tnyan",
+    "test": "nodemon test/server.test.js",
     "start": "nodemon src/server.js"
   },
   "repository": {
