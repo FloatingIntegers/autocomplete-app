@@ -4,8 +4,8 @@
   "description": "A word auto-completion project",
   "main": "server.js",
   "scripts": {
-    "nyantest": "node test/server.test.js | tnyan",
-    "test": "nodemon test/server.test.js",
+    "nyantest": "nodemon test/handler.test.js",
+    "test": "node test/handler.test.js | tnyan",
     "start": "nodemon src/server.js"
   },
   "repository": {
