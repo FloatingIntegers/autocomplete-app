@@ -1,5 +1,5 @@
 {
-  "extends": "defaults/configurations/airbnb/es6",
+  "extends": "airbnb-base",
   "env": {
     "browser": true,
     "node": true
