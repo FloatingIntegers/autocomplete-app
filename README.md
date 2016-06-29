@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FloatingIntegers/autocomplete-app.svg?branch=master)](https://travis-ci.org/FloatingIntegers/autocomplete-app)
+
 # Autocomplete Project
 
 ## What?
