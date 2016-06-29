@@ -4,7 +4,7 @@
       const url = req.url;
 
       if (url === '/') {
-        fs.readFile(`${__dirname}/../index.html`, (err, data) => {
+        fs.readFile(`${__dirname}/../public/index.html`, (err, data) => {
           if (err) {
             throw err;
           }
