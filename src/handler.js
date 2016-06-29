@@ -11,6 +11,13 @@
           res.writeHead(200, { 'Content-type': 'text/html' });
           res.end(data);
         });
+      } else if (url.includes('public')) {
+        const ext = url.split('.')[1];
+        fs.readFile(__dirname + url, (err, data) => {
+          console.log('here');
+          res.writeHead(200, { 'Content-type': `text/${ext}` });
+          res.end(data);
+        });
       } else {
         fs.readFile(__dirname + url, (err) => {
           if (err) {

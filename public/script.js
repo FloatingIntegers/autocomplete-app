@@ -1,14 +1,15 @@
-  const url = '/';
   const keyPressInput = document.getElementById('autocomplete-field');
-  keyPressInput.addEventListener('keypress', function () {
 
-    const xhr = new XMLHttpRequest;
-    xhr.onreadystatechange = function () {
+  function getData() {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function onReadyStateChange() {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log("IT WORKS");
-        document.getElementById('word').innerHTML = 'Hello World!'
+        console.log('IT WORKS');
+        document.getElementById('word').innerHTML = 'Hello World!';
       }
-    }
-    xhr.open('GET', url);
+    };
+    xhr.open('GET', '/');
     xhr.send();
-  });
+  }
+
+  keyPressInput.addEventListener('keypress', getData);
