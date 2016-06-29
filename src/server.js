@@ -1,24 +1,25 @@
-const http = require('http');
-const handler = require('./src/handler.js');
-const port = process.env.PORT || 4000;
+const fs = require('fs');
 
-<<<<<<< HEAD
-function handler (req, res) {
+function handler(req, res) {
   const url = req.url;
 
   if (url === '/') {
     fs.readFile(__dirname + '/..' + '/index.html', (err, data) => {
-      if (err) {
-        throw err;
+      if (err){
+          throw err;
       }
       res.writeHead(200, {"Content-type": "text/html"});
       res.end(data);
     });
-  }
+} else {
+        fs.readFile(__dirname + url, (err, data) => {
+        if (err) {
+          res.writeHead(404);
+          res.end('<h2>404 File not found</h2>');
+        }
+      });
+    }
 }
 
-=======
->>>>>>> master
-http.createServer(handler).listen(port);
 
-console.log("Server is running on localhost:" + port);
+module.exports = handler;
