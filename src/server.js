@@ -1,8 +1,8 @@
 const http = require('http');
-const fs = require('fs');
-
+const handler = require('./src/handler.js');
 const port = process.env.PORT || 4000;
 
+<<<<<<< HEAD
 function handler (req, res) {
   const url = req.url;
 
@@ -17,6 +17,8 @@ function handler (req, res) {
   }
 }
 
+=======
+>>>>>>> master
 http.createServer(handler).listen(port);
 
 console.log("Server is running on localhost:" + port);
