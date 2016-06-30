@@ -13,8 +13,11 @@
         });
       } else if (url.includes('public')) {
         const ext = url.split('.')[1];
-        fs.readFile(__dirname + url, (err, data) => {
-          console.log('here');
+        fs.readFile(`${__dirname}/..${url}`, (err, data) => {
+          if (err) {
+            res.writeHead(404);
+            res.end('<h2>404 File not found</h2>');
+          }
           res.writeHead(200, { 'Content-type': `text/${ext}` });
           res.end(data);
         });
