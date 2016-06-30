@@ -1,23 +1,25 @@
 const fs = require('fs');
 const getQueryParams = require('./get-query-params');
 
-
 function handler(req, res) {
-  if (req.url === '/') {
+  const url = req.url;
+  if (url === '/') {
     fs.readFile(`${__dirname}/../public/index.html`, (err, data) => {
       if (err) {
-        throw err;
+        res.writeHead(404);
+        res.end('<h2>404 File not found</h2>');
       }
       res.writeHead(200, { 'Content-type': 'text/html' });
       res.end(data);
     });
-  } else if (req.url.includes('api/words')) {
-    console.log(getQueryParams(req.url));
+  } else if (url.includes('api/words')) {
+    const queryObj = getQueryParams(url);
+    console.log(queryObj);
     res.writeHead(200, { 'Content-type': 'text/plain' });
     res.end('blue\nbrown\ngreen');
-  } else if (req.url.includes('public')) {
-    const ext = req.url.split('.')[1];
-    fs.readFile(`${__dirname}/..${req.url}`, (err, data) => {
+  } else if (url.includes('public')) {
+    const ext = url.split('.')[1];
+    fs.readFile(`${__dirname}/..${url}`, (err, data) => {
       if (err) {
         res.writeHead(404);
         res.end('<h2>404 File not found</h2>');
@@ -26,7 +28,7 @@ function handler(req, res) {
       res.end(data);
     });
   } else {
-    fs.readFile(__dirname + req.url, (err) => {
+    fs.readFile(__dirname + url, (err) => {
       if (err) {
         res.writeHead(404);
         res.end('<h2>404 File not found</h2>');
