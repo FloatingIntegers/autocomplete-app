@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getQueryParams = require('./get-query-params');
+const getMatchingWords = require('./word-search/get-matching-words');
 
 function handler(req, res) {
   const url = req.url;
@@ -15,9 +16,8 @@ function handler(req, res) {
     });
   } else if (url.includes('api/words')) {
     const queryObj = getQueryParams(url);
-    console.log(queryObj);
-    // res.writeHead(200, { 'Content-type': 'text/plain' });
-    // res.end('blue\nbrown\ngreen');
+    res.writeHead(200, { 'Content-type': 'text/plain' });
+    getMatchingWords(queryObj.match).pipe(res);
   } else if (url.includes('public')) {
     const ext = url.split('.')[1];
     fs.readFile(`${__dirname}/..${url}`, (err, data) => {

@@ -2,7 +2,7 @@ const { createReadStream } = require('fs');
 const split = require('split');
 const createWordFilter = require('./create-word-filter');
 
-const WORDS_FILE_PATH = `${__dirname}/../../resources/words.txt`;
+const WORDS_FILE_PATH = `${__dirname}/../../resources/dictionary.txt`;
 
 /**
  * Get stream of matching words

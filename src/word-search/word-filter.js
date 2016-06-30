@@ -7,9 +7,11 @@ class WordFilter extends Transform {
    * @param  {RegExp} filter regular expression to filter words
    * @return {WordFilter} current instance
    */
-  constructor(filter) {
+  constructor(filter, maxResults = 20) {
     super({ objectMode: true });
     this.filter = filter;
+    this.maxResults = maxResults;
+    this.counter = 0;
   }
 
   /**
@@ -20,7 +22,12 @@ class WordFilter extends Transform {
    * @return {undefined}            CPS so no return value
    */
   _transform(word, encoding, callback) {
-    if (!this.filter || this.filter.test(word)) this.push(word);
+    if (this.counter < this.maxResults) {
+      if (!this.filter || this.filter.test(word)) {
+        this.push(`${word}\n`);
+        this.counter++;
+      }
+    }
     callback();
   }
 }
