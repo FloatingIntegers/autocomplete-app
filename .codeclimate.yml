@@ -18,5 +18,6 @@ ratings:
     - "**.css"
 
 exclude_paths:
-  - "frontendTest/lib/"
+  - "frontendTest/"
+  - "backendTest/"
   - "node_modules/"
