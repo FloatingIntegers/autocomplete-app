@@ -35,7 +35,7 @@ tape('test get request to public endpoint', t => {
 
 
 // Failing test with error : 'throw new Error ('Can\'t set headers after they are sent)'
-//
+// //
 // tape('test script fails when given false public endpoint', t => {
 //   shot.inject(handler, { method: 'get', url: '/public/reregw' }, (res) => {
 //     t.equal(res.statusCode, 404, '/public/reregw has status code of 404');
