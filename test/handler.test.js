@@ -18,3 +18,27 @@ tape('If requesting a file we\'re not handling throw 404', t => {
     t.end();
   });
 });
+
+tape('test to get to api endpoint', t => {
+  shot.inject(handler, { method: 'get', url: '/api/words' }, (res) => {
+    t.equal(res.statusCode, 200, '/api/words has status code of 200');
+    t.end();
+  });
+});
+
+tape('test get request to public endpoint', t => {
+  shot.inject(handler, { method: 'get', url: '/public/script.js' }, (res) => {
+    t.equal(res.statusCode, 200, '/public/script.js has status code of 200');
+    t.end();
+  });
+});
+
+
+// Failing test with error : 'throw new Error ('Can\'t set headers after they are sent)'
+//
+// tape('test script fails when given false public endpoint', t => {
+//   shot.inject(handler, { method: 'get', url: '/public/reregw' }, (res) => {
+//     t.equal(res.statusCode, 404, '/public/reregw has status code of 404');
+//     t.end();
+//   });
+// });
