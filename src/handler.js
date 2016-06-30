@@ -6,7 +6,8 @@
       if (url === '/') {
         fs.readFile(`${__dirname}/../public/index.html`, (err, data) => {
           if (err) {
-            throw err;
+            res.writeHead(404);
+            res.end('<h2>404 File not found</h2>');
           }
           res.writeHead(200, { 'Content-type': 'text/html' });
           res.end(data);
