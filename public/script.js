@@ -7,6 +7,7 @@ function clearDataList() {
 }
 
 function setDataList(optionValues) {
+  console.log(optionValues);
   const list = document.getElementById('suggestions');
 
   optionValues.forEach(word => {
