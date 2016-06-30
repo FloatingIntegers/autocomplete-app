@@ -2,6 +2,8 @@
 
 [![codecov](https://codecov.io/gh/FloatingIntegers/autocomplete-app/branch/master/graph/badge.svg)](https://codecov.io/gh/FloatingIntegers/autocomplete-app)
 
+[![Code Climate](https://codeclimate.com/github/FloatingIntegers/autocomplete-app/badges/gpa.svg)](https://codeclimate.com/github/FloatingIntegers/autocomplete-app)
+
 # Autocomplete Project
 
 ## What?
