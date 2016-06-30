@@ -9,6 +9,7 @@ function clearDataList() {
 }
 
 function setDataList(optionValues) {
+  console.log(optionValues);
   const list = document.getElementById('suggestions');
 
   optionValues.forEach(word => {
@@ -28,6 +29,7 @@ function getData() {
   const inputStr = document.getElementById('autocomplete-field').value;
   xhr.onreadystatechange = function onReadyStateChange() {
     if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log(xhr.responseText);
       const response = xhr.responseText.split('\n');
       updateList(response);
     }
