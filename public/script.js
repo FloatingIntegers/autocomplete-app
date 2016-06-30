@@ -7,7 +7,6 @@ function clearDataList() {
 }
 
 function setDataList(optionValues) {
-  console.log(optionValues);
   const list = document.getElementById('suggestions');
 
   optionValues.forEach(word => {
@@ -36,6 +35,9 @@ function getData(elem, callback) {
     xhr.send();
   };
 }
-const submitButton = document.getElementById('submit');
+// const submitButton = document.getElementById('submit');
 
-submitButton.addEventListener('click', getData(document.getElementById('autocomplete-field'), updateList));
+const textInputNode = document.getElementById('autocomplete-field');
+const clickHandler = getData(textInputNode, updateList);
+
+textInputNode.addEventListener('keyup', clickHandler);
