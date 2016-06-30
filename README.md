@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/FloatingIntegers/autocomplete-app.svg?branch=master)](https://travis-ci.org/FloatingIntegers/autocomplete-app)
 
+[![codecov](https://codecov.io/gh/FloatingIntegers/autocomplete-app/branch/master/graph/badge.svg)](https://codecov.io/gh/FloatingIntegers/autocomplete-app)
+
 # Autocomplete Project
 
 ## What?
