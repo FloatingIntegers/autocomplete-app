@@ -8,9 +8,10 @@ function handler(req, res) {
       if (err) {
         res.writeHead(404);
         res.end('<h2>404 File not found</h2>');
+      } else {
+        res.writeHead(200, { 'Content-type': 'text/html' });
+        res.end(data);
       }
-      res.writeHead(200, { 'Content-type': 'text/html' });
-      res.end(data);
     });
   } else if (url.includes('api/words')) {
     const queryObj = getQueryParams(url);
@@ -23,17 +24,14 @@ function handler(req, res) {
       if (err) {
         res.writeHead(404);
         res.end('<h2>404 File not found</h2>');
+      } else {
+        res.writeHead(200, { 'Content-type': `text/${ext}` });
+        res.end(data);
       }
-      res.writeHead(200, { 'Content-type': `text/${ext}` });
-      res.end(data);
     });
   } else {
-    fs.readFile(__dirname + url, (err) => {
-      if (err) {
-        res.writeHead(404);
-        res.end('<h2>404 File not found</h2>');
-      }
-    });
+    res.writeHead(404);
+    res.end('<h2>404 File not found</h2>');
   }
 }
 
