@@ -1,5 +1,3 @@
-const submitButton = document.getElementById('submit');
-
 function clearDataList() {
   const list = document.getElementById('suggestions');
 
@@ -23,17 +21,20 @@ function updateList(listValues) {
   setDataList(listValues);
 }
 
-function getData() {
-  const xhr = new XMLHttpRequest();
-  const inputStr = document.getElementById('autocomplete-field').value;
-  xhr.onreadystatechange = function onReadyStateChange() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const response = xhr.responseText.split('\n');
-      updateList(response);
-    }
+function getData(elem, callback) {
+  return function xhrCallback() {
+    const xhr = new XMLHttpRequest();
+    const inputStr = elem.value;
+    xhr.onreadystatechange = function onReadyStateChange() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const response = xhr.responseText.split('\n');
+        callback(response);
+      }
+    };
+    xhr.open('GET', `/api/words?match=${inputStr}`);
+    xhr.send();
   };
-  xhr.open('GET', `api/words?match=${inputStr}`);
-  xhr.send();
 }
+const submitButton = document.getElementById('submit');
 
-submitButton.addEventListener('click', getData);
+submitButton.addEventListener('click', getData(document.getElementById('autocomplete-field'), updateList));
