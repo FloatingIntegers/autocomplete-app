@@ -11,6 +11,9 @@
           res.writeHead(200, { 'Content-type': 'text/html' });
           res.end(data);
         });
+      } else if (url.includes('api/words')) {
+        res.writeHead(200, { 'Content-type': 'text/plain' });
+        res.end('blue\nbrown\ngreen');
       } else if (url.includes('public')) {
         const ext = url.split('.')[1];
         fs.readFile(`${__dirname}/..${url}`, (err, data) => {
