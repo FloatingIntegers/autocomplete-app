@@ -10,7 +10,6 @@ const WORDS_FILE_PATH = `${__dirname}/../../resources/dictionary.txt`;
  * @return {WriteStream}          stream of words matching fragment
  */
 function getMatchingWords(fragment) {
-  createReadStream(WORDS_FILE_PATH, 'utf8').on('data', console.log.bind(console));
   return createReadStream(WORDS_FILE_PATH)
             .pipe(split())
             .pipe(createWordFilter(fragment));
