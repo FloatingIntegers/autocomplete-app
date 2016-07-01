@@ -1,4 +1,17 @@
-// global OriDomi
+/* global OriDomi */
+const folded = new OriDomi('#origami', {
+  hPanels: 10,
+  ripple: true,
+  shading: 'hard',
+  speed: 1000,
+  maxAngle: 70,
+  perspective: 800,
+  touchEnabled: false,
+});
+
+folded.collapse('top');
+
+const textInputNode = document.getElementById('data-input');
 
 function clearDataList(listNode) {
   Array.from(listNode.childNodes).forEach(node => {
@@ -6,13 +19,8 @@ function clearDataList(listNode) {
   });
 }
 
-function setDataList(listNode, optionValues) {
-  optionValues.forEach(word => {
-    const childNode = document.createElement('div');
-    childNode.className = 'fold';
-    childNode.textContent = word;
-    listNode.appendChild(childNode);
-  });
+function clearList() {
+  folded.modifyContent(clearDataList);
 }
 
 function getData(elem, callback) {
@@ -35,20 +43,15 @@ function getData(elem, callback) {
   };
 }
 
-// globals OriDomi
-const folded = new OriDomi('#origami', {
-  hPanels: 10,
-  ripple: true,
-  shading: 'hard',
-  speed: 1000,
-  maxAngle: 70,
-  perspective: 800,
-});
-
-folded.collapse('top');
-
-function clearList() {
-  folded.modifyContent(clearDataList);
+function setDataList(listNode, optionValues) {
+  optionValues.forEach(word => {
+    const childNode = document.createElement('div');
+    childNode.className = 'fold';
+    childNode.textContent = word;
+    // eslint-disable-next-line no-use-before-define
+    childNode.addEventListener('click', setTextInput(word));
+    listNode.appendChild(childNode);
+  });
 }
 
 function updateList(listValues) {
@@ -59,20 +62,11 @@ function updateList(listValues) {
   folded.accordion('top');
 }
 
-const textInputNode = document.getElementById('data-input');
 const clickHandler = getData(textInputNode, updateList);
 
+const setTextInput = (word) => () => {
+  textInputNode.value = word;
+  clickHandler();
+};
+
 textInputNode.addEventListener('input', clickHandler);
-
-
-// folded.modifyContent((el) => {
-//   setDataList(el, dummyData);
-// });
-//
-// document.getElementById('button-fold').addEventListener('click', () => {
-//   folded.modifyContent((el) => {
-//     clearDataList(el);
-//     setDataList(el, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']);
-//   });
-//   folded.accordion('top');
-// });
