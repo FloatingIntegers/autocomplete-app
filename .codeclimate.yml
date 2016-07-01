@@ -10,7 +10,7 @@ engines:
         - javascript
 
   nodesecurity:
-    enabled: true
+    enabled: false
 
 ratings:
   paths:

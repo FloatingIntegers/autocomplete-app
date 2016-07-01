@@ -26,6 +26,22 @@ tape('test to get to api endpoint', t => {
   });
 });
 
+tape('test that query string returns correct response', t => {
+  shot.inject(handler, { method: 'get', url: '/api/words?match=ala&max=5' }, (res) => {
+    const expect = 'ala\nAlabama\nAlabaman\nAlabamian\nalabamide\n';
+    t.equal(res.payload, expect, 'returns correct response');
+    t.end();
+  });
+});
+
+tape('test what results will be returned when no parameters passed', t => {
+  shot.inject(handler, { method: 'get', url: '/api/words' }, (res) => {
+    const expect = 'A\na\naa\naal\naalii\naam\nAani\naardvark\naardwolf\nAaron\n';
+    t.equal(res.payload, expect, 'returns correct response');
+    t.end();
+  });
+});
+
 tape('test get request to public endpoint', t => {
   shot.inject(handler, { method: 'get', url: '/public/script.js' }, (res) => {
     t.equal(res.statusCode, 200, '/public/script.js has status code of 200');

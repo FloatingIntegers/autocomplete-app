@@ -9,10 +9,10 @@ const WORDS_FILE_PATH = `${__dirname}/../../resources/dictionary.txt`;
  * @param  {string} fragment word fragment to match
  * @return {WriteStream}          stream of words matching fragment
  */
-function getMatchingWords(fragment) {
+function getMatchingWords(fragment, max = 10) {
   return createReadStream(WORDS_FILE_PATH)
             .pipe(split())
-            .pipe(createWordFilter(fragment));
+            .pipe(createWordFilter(fragment, max));
 }
 
 module.exports = getMatchingWords;
