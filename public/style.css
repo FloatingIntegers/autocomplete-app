@@ -30,6 +30,7 @@ body{
   height: 55px;
   width: 100%;
   color: #674D53;
+  cursor: pointer;
 }
 #sticky-fold{
   width: 100%;
