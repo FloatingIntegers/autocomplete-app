@@ -1,7 +1,14 @@
 const shot = require('shot');
 const tape = require('tape');
+const sinon = require('sinon');
+const proxyquire = require('proxyquire');
 
-const handler = require('../src/handler.js');
+const fsStub = {
+  // readFile: sinon.stub(),
+};
+
+// const handler = require('../src/handler.js');
+const handler = proxyquire('../src/handler.js', { fs: fsStub });
 
 tape('test get request to the / endpoint', t => {
   shot.inject(handler, { method: 'get', url: '/' }, (res) => {
@@ -9,6 +16,16 @@ tape('test get request to the / endpoint', t => {
     t.ok(res.payload.includes('<!DOCTYPE'), 'finds index.html file');
     t.equal(res.headers['Content-type'], 'text/html', 'response type is html');
     t.end();
+  });
+});
+
+tape('test get request returns 404 if index.html not found', t => {
+  const stub = sinon.stub(fsStub, 'readFile');
+  stub.yields(new Error());
+  shot.inject(handler, { method: 'get', url: '/' }, (res) => {
+    t.equal(res.statusCode, 404, '/ has status code of 404');
+    t.end();
+    stub.restore();
   });
 });
 
