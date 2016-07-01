@@ -30,7 +30,7 @@ function handler(req, res) {
   } else if (url.includes('api/words')) {
     const queryObj = getQueryParams(url);
     res.writeHead(200, { 'Content-type': 'text/plain' });
-    getMatchingWords(queryObj.match).pipe(res);
+    getMatchingWords(queryObj.match, queryObj.max).pipe(res);
   } else if (url.includes('public')) {
     const ext = url.split('.')[1];
     fs.readFile(`${__dirname}/..${url}`, (err, data) => {
