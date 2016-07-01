@@ -21,7 +21,7 @@ tape('test get request to the / endpoint', t => {
 
 tape('test get request returns 404 if index.html not found', t => {
   const stub = sinon.stub(fsStub, 'readFile');
-  stub.yield(new Error());
+  stub.yields(new Error());
   shot.inject(handler, { method: 'get', url: '/' }, (res) => {
     t.equal(res.statusCode, 404, '/ has status code of 404');
     t.end();
