@@ -25,6 +25,10 @@ function getData(elem, callback) {
   return function xhrCallback() {
     const xhr = new XMLHttpRequest();
     const inputStr = elem.value;
+    if (inputStr.length < 3) {
+      clearDataList();
+      return;
+    }
     xhr.onreadystatechange = function onReadyStateChange() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const response = xhr.responseText.split('\n');
@@ -40,4 +44,4 @@ function getData(elem, callback) {
 const textInputNode = document.getElementById('autocomplete-field');
 const clickHandler = getData(textInputNode, updateList);
 
-textInputNode.addEventListener('keyup', clickHandler);
+textInputNode.addEventListener('input', clickHandler);
