@@ -30,7 +30,7 @@ function handler(req, res) {
       }
     });
   } else if (pathName.includes('api/words')) {
-    const queryObj = getQueryParams(pathName);
+    const queryObj = getQueryParams(req.url);
     res.writeHead(200, { 'Content-type': 'text/plain' });
     getMatchingWords(queryObj.match, queryObj.max).pipe(res);
   } else {
