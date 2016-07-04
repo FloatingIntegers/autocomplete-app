@@ -21,7 +21,7 @@ function handler(req, res) {
   if (url === '/') {
     fs.readFile(`${__dirname}/../public/origami.html`, (err, data) => {
       if (err) {
-        res.writeHead(404, {'Content-type': 'text/html' });
+        res.writeHead(404, { 'Content-type': 'text/html' });
         res.end('<h2>404 File not found</h2>');
       } else {
         res.writeHead(200, { 'Content-type': 'text/html' });
@@ -36,27 +36,13 @@ function handler(req, res) {
     const ext = getFileExt(url);
     fs.readFile(`${__dirname}/..${url}`, (err, data) => {
       if (err) {
-<<<<<<< HEAD
-        res.writeHead(404, {'Content-type': 'text/html' });
-=======
         res.writeHead(404, { 'Content-type': 'text/html' });
->>>>>>> master
         res.end('<h2>404 File not found</h2>');
       } else {
         res.writeHead(200, { 'Content-type': getContentTypeFromExt(ext) });
         res.end(data);
       }
     });
-<<<<<<< HEAD
-  } else if (url.includes('api/words')) {
-    const queryObj = getQueryParams(url);
-    res.writeHead(200, { 'Content-type': 'text/plain' });
-    getMatchingWords(queryObj.match, queryObj.max).pipe(res);
-  } else {
-    res.writeHead(404, {'Content-type': 'text/html' });
-    res.end('<h2>404 File not found</h2>');
-=======
->>>>>>> master
   }
 }
 
