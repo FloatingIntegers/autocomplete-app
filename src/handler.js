@@ -21,7 +21,7 @@ function handler(req, res) {
   if (url === '/') {
     fs.readFile(`${__dirname}/../public/origami.html`, (err, data) => {
       if (err) {
-        res.writeHead(404);
+        res.writeHead(404, { 'Content-type': 'text/html' });
         res.end('<h2>404 File not found</h2>');
       } else {
         res.writeHead(200, { 'Content-type': 'text/html' });
