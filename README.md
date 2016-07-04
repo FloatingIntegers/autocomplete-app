@@ -30,7 +30,7 @@ Jasmine is used to test the front-end, and tape is used to test the back-end.
 ## Stretch Goals
 
 * Adjust accordion to resize to the number of filtered words returned.
-~* Make it so that you can select each filtered word returned and populate the
-input field with it.~
+* ~~Make it so that you can select each filtered word returned and populate the
+input field with it.~~
 * Have the placeholder text of the input field remain as you type and be changed
 to the first filtered word returned as you type.
