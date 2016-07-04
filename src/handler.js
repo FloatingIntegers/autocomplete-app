@@ -1,5 +1,5 @@
 const fs = require('fs');
-const getQueryParams = require('./get-query-params');
+const { getUrlData, getQueryParams } = require('./get-query-params');
 const getMatchingWords = require('./word-search/get-matching-words');
 
 const VALID_EXTS_TO_CONTENT_TYPES = {
@@ -10,15 +10,16 @@ function getContentTypeFromExt(ext) {
   return VALID_EXTS_TO_CONTENT_TYPES[ext] || `text/${ext}`;
 }
 
-function getFileExt(url) {
-  const regExMatch = /\.(\w+)$/.exec(url);
+function getFileExt(pathName) {
+  const regExMatch = /\.(\w+)$/.exec(pathName);
   return regExMatch !== null ? regExMatch[1] : 'plain';
 }
 
 function handler(req, res) {
-  const url = req.url;
+  const urlData = getUrlData(req.url);
+  const pathName = urlData.pathname;
 
-  if (url === '/') {
+  if (pathName === '/') {
     fs.readFile(`${__dirname}/../public/origami.html`, (err, data) => {
       if (err) {
         res.writeHead(404);
@@ -28,13 +29,13 @@ function handler(req, res) {
         res.end(data);
       }
     });
-  } else if (url.includes('api/words')) {
-    const queryObj = getQueryParams(url);
+  } else if (pathName.includes('api/words')) {
+    const queryObj = getQueryParams(pathName);
     res.writeHead(200, { 'Content-type': 'text/plain' });
     getMatchingWords(queryObj.match, queryObj.max).pipe(res);
   } else {
-    const ext = getFileExt(url);
-    fs.readFile(`${__dirname}/..${url}`, (err, data) => {
+    const ext = getFileExt(pathName);
+    fs.readFile(`${__dirname}/..${pathName}`, (err, data) => {
       if (err) {
         res.writeHead(404, { 'Content-type': 'text/html' });
         res.end('<h2>404 File not found</h2>');
