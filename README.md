@@ -6,6 +6,18 @@
 
 # Autocomplete Project
 
+## Quickstart guide
+``` bash
+git clone <our repository name>
+cd <our repository path>
+npm install
+npm start
+```
+And to see the tests:
+``` bash
+npm run test
+```
+
 ## What?
 
 Autocomplete application that returns the closest 10 word matches of a string entered
@@ -24,13 +36,13 @@ the form input with the filtered words.
 
 The origami animations are implemented using a css library called [OriDomi](http://oridomi.com/).
 
-###### Testing
+## Testing
 Jasmine is used to test the front-end, and tape is used to test the back-end.
 
 ## Stretch Goals
 
 * Adjust accordion to resize to the number of filtered words returned.
-* Make it so that you can select each filtered word returned and populate the
-input field with it.
+* ~~Make it so that you can select each filtered word returned and populate the
+input field with it.~~
 * Have the placeholder text of the input field remain as you type and be changed
 to the first filtered word returned as you type.
