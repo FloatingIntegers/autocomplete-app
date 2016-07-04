@@ -19,7 +19,7 @@ function handler(req, res) {
   const url = req.url;
 
   if (url === '/') {
-    fs.readFile(`${__dirname}/../public/index.html`, (err, data) => {
+    fs.readFile(`${__dirname}/../public/origami.html`, (err, data) => {
       if (err) {
         res.writeHead(404);
         res.end('<h2>404 File not found</h2>');
